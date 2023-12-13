@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -33,5 +32,11 @@ public class ProductService {
         } else {
             return "Producto no encontrado";
         }
+    }
+    public List<ProductModel> getRandomProducts() {
+        List<ProductModel> allProducts = productRepository.findAll(); // Obtén todos los productos
+        Collections.shuffle(allProducts); // Baraja la lista de productos
+        int numberOfRandomProducts = 5; // Cambia según tus necesidades
+        return allProducts.subList(0, numberOfRandomProducts); // Obtén los primeros N productos aleatorios
     }
 }

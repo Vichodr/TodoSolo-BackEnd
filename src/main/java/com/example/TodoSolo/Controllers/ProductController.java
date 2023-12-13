@@ -1,6 +1,7 @@
 package com.example.TodoSolo.Controllers;
 import com.example.TodoSolo.Models.ProductModel;
 import com.example.TodoSolo.Services.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,4 +34,11 @@ public class ProductController {
     public String deleteProductById(@PathVariable Long id) {
         return productService.deleteProductById(id);
     }
+
+    @GetMapping("/random")
+    public ResponseEntity<List<ProductModel>> getRandomProducts() {
+        List<ProductModel> randomProducts = productService.getRandomProducts(); // Implementa este método en tu ProductService
+        return ResponseEntity.ok(randomProducts);
+    }
+
 }
